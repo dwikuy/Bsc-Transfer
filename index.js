@@ -4,7 +4,6 @@ const fs = require('fs-extra');
 
 const BSC_RPC_URL = "https://rpc.ankr.com/bsc/";
 const provider = new ethers.providers.JsonRpcProvider(BSC_RPC_URL);
-const TOKEN_ADDRESS = "0xe846Dd34Dc07ab517e78f5e58edae79D80222FD0"; // Replace with your token contract address
 const ERC20_ABI = [
     "function balanceOf(address owner) view returns (uint256)",
     "function transfer(address to, uint amount) returns (bool)"
@@ -47,7 +46,8 @@ async function processWallets(file, mainAddress, contractAddress) {
 async function main() {
     const file = readline.question("Enter the file name containing the wallets: ");
     const mainAddress = readline.question("Enter the main address: ");
-    await processWallets(file, mainAddress, TOKEN_ADDRESS);
+    const contractAddress = readline.question("Enter the token contract address: ");
+    await processWallets(file, mainAddress, contractAddress);
 }
 
 main();
